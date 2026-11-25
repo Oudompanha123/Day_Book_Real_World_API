@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: daybook-api
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/daybook}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:Panhaoudom123}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none   # the schema is owned by Flyway (src/main/resources/db/migration)
+  flyway:
+    enabled: true
+
+server:
+  port: ${PORT:8080}
+  forward-headers-strategy: framework
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+daybook:
+  # At least 32 characters. Generate one with: openssl rand -base64 48
+  jwt-secret: ${JWT_SECRET:dev-only-secret-change-me-before-deploying-0123456789}
+  token-days: 30
+  # Set to true in production (HTTPS) so the login cookie is only sent over TLS
+  cookie-secure: ${COOKIE_SECURE:false}
+  # Only needed if the browser calls the API directly instead of through the Next.js proxy
+  cors-origins: ${CORS_ORIGINS:http://localhost:3000}
