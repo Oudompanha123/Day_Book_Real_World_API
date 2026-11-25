@@ -1,3 +1,28 @@
+# Build output
 target/
+*.class
+*.log
+hs_err_pid*
+replay_pid*
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+src/main/resources/application-local.yml
+src/main/resources/application-local.properties
+
+# Editors / OS
 .idea/
 *.iml
+*.iws
+*.ipr
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.classpath
+.project
+.settings/
+.factorypath
+.DS_Store
+Thumbs.db
